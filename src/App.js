@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Papa from 'papaparse';
+import './App.css'; // Importe o arquivo CSS com o estilo criado
 
 function App() {
   const [csvData, setCsvData] = useState([]);
@@ -38,34 +39,37 @@ function App() {
     }
     setTotalCol9(total);
   };
+
   return (
     <div>
       <h1>Upload de Arquivo CSV</h1>
       <input type="file" accept=".csv" onChange={handleFileUpload} />
-      <table>
-        <thead>
-          <tr>
-            <th>Coluna 1</th>
-            <th>Coluna 2</th>
-            <th>Coluna 3</th>
-            <th>Coluna 4</th>
-            <th>Coluna 5</th>
-            <th>Coluna 6</th>
-            <th>Coluna 7</th>
-            <th>Coluna 8</th>
-            <th>Coluna 9</th>
-          </tr>
-        </thead>
-        <tbody>
-          {csvData.map((row, index) => (
-            <tr key={index}>
-              {row.map((cell, cellIndex) => (
-                <td key={cellIndex}>{cell}</td>
-              ))}
+      <div className="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {csvData.map((row, index) => (
+              <tr key={index}>
+                {row.map((cell, cellIndex) => (
+                  <td key={cellIndex}>{cell}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <p>Total Concluido: {totalCol8}</p>
       <p>Total Estimado: {totalCol9}</p>
     </div>
